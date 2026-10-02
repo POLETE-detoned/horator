@@ -1,6 +1,7 @@
 import { AnimatePresence, motion, useSpring, useTransform } from 'motion/react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Confetti } from '../../components/Confetti';
+import { OpenInBrowser } from '../../components/OpenInBrowser';
 import { ARCADE_SECONDS, LONG_SILENCE_S, randomPrompt, type ArcadePrompt } from '../../data/prompts';
 import { haptic, sfx } from '../../lib/feedback';
 import { expertWords, findFillers, PACE, paceZone } from '../../lib/lexicon';
@@ -361,6 +362,7 @@ export function ArcadeScreen({ onExit }: { onExit: () => void }) {
                 Tu navegador no transcribe voz: abre Horator en Chrome o Safari para ver tus métricas.
               </div>
             )}
+            {!speechSupported() && <OpenInBrowser />}
             <motion.button
               onClick={start}
               whileTap={{ scale: 0.9 }}

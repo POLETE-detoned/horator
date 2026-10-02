@@ -1,7 +1,11 @@
 import type { Character, Scenario } from '../data/characters';
 import type { Stars } from './lexicon';
+import { buildSystemPrompt, buildTranscript, JSON_INSTRUCTION, parseReply, type Mood, type ParsedReply, type RoleplayInput } from './rolePrompt';
 
-export type Mood = 'enfadado' | 'escéptico' | 'neutral' | 'interesado' | 'convencido';
+export type { Mood, RoleplayInput };
+export type HistoryItem = RoleplayInput['history'][number];
+
+export type TurnSource = 'custom' | 'backend' | 'free' | 'local';
 
 export interface NpcTurn {
   reply: string;
@@ -9,12 +13,43 @@ export interface NpcTurn {
   mood: Mood;
   /** true si la respuesta viene del motor local (sin IA). */
   offline: boolean;
+  source: TurnSource;
 }
 
-export interface HistoryItem {
-  from: 'npc' | 'user';
-  text: string;
+// ---------- Configuración ----------
+
+export interface CustomAi {
+  /** Base de una API compatible con OpenAI (p. ej. https://api.groq.com/openai/v1). */
+  url: string;
+  model: string;
+  /** Se guarda solo en este dispositivo y solo se envía a la URL indicada. */
+  key: string;
 }
+
+export interface AiConfig {
+  /** IA pública y gratuita sin clave: el texto transcrito sale a un servicio de terceros, así que requiere consentimiento. */
+  freeAi: 'unset' | 'on' | 'off';
+  custom: CustomAi;
+}
+
+export const DEFAULT_AI: AiConfig = { freeAi: 'unset', custom: { url: '', model: '', key: '' } };
+
+/** Preset de IA gratuita y pública. Se puede cambiar al compilar con VITE_FREE_AI_URL / VITE_FREE_AI_MODEL. */
+export const FREE_PRESET = {
+  name: 'Pollinations',
+  url: (import.meta.env?.VITE_FREE_AI_URL as string | undefined) ?? 'https://text.pollinations.ai/openai',
+  model: (import.meta.env?.VITE_FREE_AI_MODEL as string | undefined) ?? 'openai',
+};
+
+export function customEndpoint(c: CustomAi): string | null {
+  const base = c.url.trim().replace(/\/+$/, '');
+  if (!base || !c.model.trim()) return null;
+  // Solo HTTPS (o localhost para desarrollo): la clave nunca viaja en claro.
+  if (!/^https:\/\//i.test(base) && !/^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?(\/|$)/i.test(base)) return null;
+  return /\/chat\/completions$/.test(base) ? base : `${base}/chat/completions`;
+}
+
+// ---------- Motor local ----------
 
 const moodFromMeter = (m: number): Mood =>
   m < 20 ? 'enfadado' : m < 40 ? 'escéptico' : m < 60 ? 'neutral' : m < 85 ? 'interesado' : 'convencido';
@@ -30,40 +65,109 @@ export function offlineTurn(c: Character, s: Scenario, stars: Stars, meter: numb
     delta,
     mood: moodFromMeter(Math.max(0, Math.min(100, meter + delta))),
     offline: true,
+    source: 'local',
   };
 }
 
-let aiAvailable: boolean | null = null;
+// ---------- Proveedores ----------
 
-/** Pide la respuesta al personaje IA; si no hay red o servidor, devuelve null (se usa el motor local). */
-export async function aiTurn(
-  characterId: string,
-  scenarioId: string,
-  meter: number,
-  history: HistoryItem[],
-  timeoutMs = 9000,
-): Promise<NpcTurn | null> {
-  if (aiAvailable === false || !navigator.onLine) return null;
+interface Endpoint {
+  url: string;
+  model: string;
+  key?: string;
+}
+
+/** Llamada a cualquier API compatible con OpenAI (Chat Completions). */
+async function callCompat(ep: Endpoint, req: RoleplayInput, deadline: number): Promise<ParsedReply | null> {
   const ctrl = new AbortController();
-  const t = setTimeout(() => ctrl.abort(), timeoutMs);
+  const timer = setTimeout(() => ctrl.abort(), Math.max(1500, deadline - Date.now()));
+  try {
+    const res = await fetch(ep.url, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', ...(ep.key ? { authorization: `Bearer ${ep.key}` } : {}) },
+      body: JSON.stringify({
+        model: ep.model,
+        messages: [
+          { role: 'system', content: buildSystemPrompt(req) + JSON_INSTRUCTION },
+          { role: 'user', content: buildTranscript(req) },
+        ],
+        max_tokens: 300,
+        temperature: 0.8,
+      }),
+      signal: ctrl.signal,
+    });
+    if (!res.ok) return null;
+    const data = (await res.json()) as { choices?: { message?: { content?: unknown } }[] };
+    const text = data.choices?.[0]?.message?.content;
+    return typeof text === 'string' ? parseReply(text) : null;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+const state = { backend: null as boolean | null, freeFails: 0 };
+export const resetAiState = () => {
+  state.backend = null;
+  state.freeFails = 0;
+};
+
+/** Servidor propio (/api/roleplay con Claude). Solo existe si se despliega la función serverless. */
+async function callBackend(req: RoleplayInput, deadline: number): Promise<ParsedReply | null> {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), Math.max(1500, deadline - Date.now()));
   try {
     const res = await fetch('./api/roleplay', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ characterId, scenarioId, meter, history }),
+      body: JSON.stringify(req),
       signal: ctrl.signal,
     });
-    if (res.status === 503 || res.status === 404) {
-      aiAvailable = false; // sin clave o sin backend desplegado: no lo volvemos a intentar en esta sesión
+    if (res.status === 503 || res.status === 404 || res.status === 405) {
+      state.backend = false; // sin clave o sin backend desplegado: no se vuelve a intentar en esta sesión
       return null;
     }
     if (!res.ok) return null;
-    const data = (await res.json()) as { reply: string; persuasion_delta: number; mood: Mood };
-    aiAvailable = true;
-    return { reply: data.reply, delta: data.persuasion_delta, mood: data.mood, offline: false };
+    const data = (await res.json()) as { reply?: string; persuasion_delta?: number; mood?: Mood };
+    if (typeof data.reply !== 'string') {
+      state.backend = false; // un hosting estático puede devolver index.html con 200
+      return null;
+    }
+    state.backend = true;
+    return { reply: data.reply, delta: data.persuasion_delta, mood: data.mood };
   } catch {
     return null;
   } finally {
-    clearTimeout(t);
+    clearTimeout(timer);
   }
+}
+
+/**
+ * Respuesta del personaje con IA. Orden: proveedor propio → servidor propio (Claude) → IA gratuita → null.
+ * Si devuelve null, el llamante usa el motor local. Todo el intento comparte un presupuesto de tiempo.
+ */
+export async function aiTurn(req: RoleplayInput, cfg: AiConfig, fallback: NpcTurn, budgetMs = 10_000): Promise<NpcTurn | null> {
+  if (typeof navigator !== 'undefined' && navigator.onLine === false) return null;
+  const deadline = Date.now() + budgetMs;
+
+  const attempts: [TurnSource, () => Promise<ParsedReply | null>][] = [];
+  const custom = customEndpoint(cfg.custom);
+  if (custom) attempts.push(['custom', () => callCompat({ url: custom, model: cfg.custom.model.trim(), key: cfg.custom.key.trim() || undefined }, req, deadline)]);
+  if (state.backend !== false) attempts.push(['backend', () => callBackend(req, deadline)]);
+  if (cfg.freeAi === 'on' && state.freeFails < 2) attempts.push(['free', () => callCompat({ url: FREE_PRESET.url, model: FREE_PRESET.model }, req, deadline)]);
+
+  for (const [source, run] of attempts) {
+    if (Date.now() >= deadline) break;
+    let out: ParsedReply | null = null;
+    try {
+      out = await run();
+    } catch {
+      out = null;
+    }
+    if (out) {
+      if (source === 'free') state.freeFails = 0;
+      return { reply: out.reply, delta: out.delta ?? fallback.delta, mood: out.mood ?? fallback.mood, offline: false, source };
+    }
+    if (source === 'free') state.freeFails++;
+  }
+  return null;
 }

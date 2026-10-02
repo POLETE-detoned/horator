@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import { useCallback, useEffect, useState } from 'react';
 import { RewardLayer } from './components/RewardLayer';
 import { unlockAudio } from './lib/feedback';
+import { getTg, initTelegram } from './lib/telegram';
 import { ArcadeScreen } from './modes/arcade/ArcadeScreen';
 import { RoleplayScreen } from './modes/roleplay/RoleplayScreen';
 import { SynonymScreen } from './modes/synonyms/SynonymScreen';
@@ -16,6 +17,7 @@ const TABS: Route[] = ['lobby', 'powers'];
 export default function App() {
   const [route, setRoute] = useState<Route>('lobby');
   const refreshDay = useGame((s) => s.refreshDay);
+  const [tgReady, setTgReady] = useState(false);
 
   const go = useCallback((r: Route) => {
     unlockAudio();
@@ -42,6 +44,23 @@ export default function App() {
   }, []);
 
   const inGame = !TABS.includes(route);
+
+  useEffect(() => {
+    void initTelegram().then(setTgReady);
+  }, []);
+
+  // Dentro de Telegram, el botón Atrás nativo (cabecera) sustituye al gesto del sistema.
+  useEffect(() => {
+    const w = tgReady ? getTg() : undefined;
+    if (!w) return;
+    if (!inGame) {
+      w.BackButton.hide();
+      return;
+    }
+    w.BackButton.show();
+    w.BackButton.onClick(back);
+    return () => w.BackButton.offClick(back);
+  }, [tgReady, inGame, back]);
 
   return (
     <div className="app">

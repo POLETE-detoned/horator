@@ -1,6 +1,8 @@
 // Feedback sensorial: hápticos y efectos de sonido sintetizados (sin ficheros que descargar).
 // Ambos respetan los ajustes del jugador; el sonido se apaga en modo silencioso.
 
+import { getTg } from './telegram';
+
 let soundOn = true;
 let hapticsOn = true;
 
@@ -9,22 +11,37 @@ export function configureFeedback(opts: { sound: boolean; haptics: boolean }) {
   hapticsOn = opts.haptics;
 }
 
-export const haptic = {
-  tap: () => vibrate(8),
-  success: () => vibrate([12, 40, 18]),
-  error: () => vibrate([30, 30, 30]),
-  filler: () => vibrate(45),
-  levelUp: () => vibrate([20, 50, 20, 50, 60]),
-};
+type HapticKind = 'tap' | 'success' | 'error' | 'filler' | 'levelUp';
 
-function vibrate(p: number | number[]) {
+/** Háptico nativo de Telegram si estamos dentro; si no, navigator.vibrate (Android). */
+function buzz(kind: HapticKind, pattern: number | number[]) {
   if (!hapticsOn) return;
+  const h = getTg()?.HapticFeedback;
+  if (h) {
+    try {
+      if (kind === 'tap') h.impactOccurred('light');
+      else if (kind === 'success' || kind === 'levelUp') h.notificationOccurred('success');
+      else if (kind === 'error') h.notificationOccurred('error');
+      else h.impactOccurred('rigid');
+    } catch {
+      /* cliente sin háptica */
+    }
+    return;
+  }
   try {
-    navigator.vibrate?.(p);
+    navigator.vibrate?.(pattern);
   } catch {
-    /* iOS no soporta vibrate: se ignora */
+    /* iOS Safari no soporta vibrate: se ignora */
   }
 }
+
+export const haptic = {
+  tap: () => buzz('tap', 8),
+  success: () => buzz('success', [12, 40, 18]),
+  error: () => buzz('error', [30, 30, 30]),
+  filler: () => buzz('filler', 45),
+  levelUp: () => buzz('levelUp', [20, 50, 20, 50, 60]),
+};
 
 let ctx: AudioContext | null = null;
 const audio = () => {

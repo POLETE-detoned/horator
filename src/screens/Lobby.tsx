@@ -1,5 +1,7 @@
-import { motion } from 'motion/react';
+import { AnimatePresence, motion } from 'motion/react';
+import { useState } from 'react';
 import type { Route } from '../App';
+import { AiSettings } from '../components/AiSettings';
 import { ProgressRing } from '../components/ProgressRing';
 import { TabBar } from '../components/TabBar';
 import { MISSION_XP, missionsFor } from '../data/missions';
@@ -27,6 +29,7 @@ export function Lobby({ go }: { go: (r: Route) => void }) {
   const progress = useGame((s) => s.progress);
   const silent = useGame((s) => s.settings.silent);
   const setSettings = useGame((s) => s.setSettings);
+  const [aiOpen, setAiOpen] = useState(false);
   const today = dayKey();
   const streak = visibleStreak(progress, today);
   const playedToday = progress.lastPlayed === today;
@@ -84,6 +87,16 @@ export function Lobby({ go }: { go: (r: Route) => void }) {
           style={{ background: silent ? 'var(--lexico)' : undefined }}
         >
           {silent ? '🔇' : '🔊'}
+        </button>
+        <button
+          className="icon-btn"
+          aria-label="Ajustes de IA"
+          onClick={() => {
+            haptic.tap();
+            setAiOpen(true);
+          }}
+        >
+          ⚙️
         </button>
       </header>
 
@@ -233,6 +246,7 @@ export function Lobby({ go }: { go: (r: Route) => void }) {
       </div>
 
       <TabBar current="lobby" go={go} />
+      <AnimatePresence>{aiOpen && <AiSettings onClose={() => setAiOpen(false)} />}</AnimatePresence>
     </>
   );
 }

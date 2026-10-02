@@ -37,15 +37,23 @@ Para probar micrófono y cámara en el móvil hace falta HTTPS (p. ej. desplegar
 
 ### Personajes con IA
 
-Las respuestas de los personajes las genera Claude desde una función serverless (`api/roleplay.ts` → `server/roleplay.ts`) con salida JSON estructurada (`reply`, `persuasion_delta`, `mood`), esfuerzo bajo para minimizar latencia y *fallback* de servidor activado (`fallbacks: "default"`) por si el modelo declina una petición.
+Los personajes pueden responder con tres niveles, probados en este orden (el primero que responde gana; todo comparte un presupuesto de 10 s y, si ninguno responde, se usa el motor local):
+
+1. **Tu propio proveedor** (⚙️ en el lobby → *Usar mi propio proveedor*): cualquier API compatible con OpenAI (Groq, OpenRouter, Gemini…). La clave se guarda solo en el dispositivo, solo se envía a esa URL y solo se acepta HTTPS.
+2. **Servidor propio con Claude** (`api/roleplay.ts` → `server/roleplay.ts`): salida JSON estructurada, esfuerzo bajo y *fallback* de servidor (`fallbacks: "default"`). Requiere desplegar la función (Vercel) con `ANTHROPIC_API_KEY`; la clave nunca llega al navegador.
+3. **IA pública y gratuita sin clave** (Pollinations, por defecto): funciona incluso en GitHub Pages. **Requiere consentimiento** (la app lo pregunta una vez) porque las respuestas transcritas salen a un servicio externo; no se envía audio ni vídeo. Se puede cambiar el servicio al compilar con `VITE_FREE_AI_URL` y `VITE_FREE_AI_MODEL`. Tras dos fallos seguidos deja de intentarse en esa sesión.
 
 ```bash
-cp .env.example .env.local   # añade ANTHROPIC_API_KEY
+cp .env.example .env.local   # solo si usas el servidor propio: añade ANTHROPIC_API_KEY
 ```
 
 - En desarrollo, Vite sirve `/api/roleplay` con el mismo manejador.
-- En Vercel, `api/roleplay.ts` se despliega como función; define `ANTHROPIC_API_KEY` en las variables del proyecto.
-- **Sin clave o sin conexión** el juego sigue funcionando: el endpoint responde 503 y el cliente usa el motor local de respuestas de cada escenario.
+- **Sin ningún proveedor o sin conexión** el juego sigue funcionando con las frases predefinidas de cada escenario.
+- Los proveedores sin salida estructurada pueden devolver JSON envuelto en texto: `parseReply` (`src/lib/rolePrompt.ts`) lo tolera y descarta respuestas cortadas para no leer código en voz alta.
+
+## Telegram
+
+Horator funciona como **Telegram Mini App** sin código extra de servidor: se registra la URL de la web en @BotFather y se comparte un enlace `t.me/...`. Guía paso a paso, imagen de portada y limitaciones en [`docs/TELEGRAM.md`](docs/TELEGRAM.md). Es mucho más simple que publicar en la App Store (99 $/año, Mac, revisión de Apple); en iPhone también se puede instalar con *Añadir a pantalla de inicio*.
 
 ## Publicar en GitHub Pages
 
@@ -55,13 +63,13 @@ El workflow `.github/workflows/pages.yml` compila, pasa los tests y publica `dis
 2. Haz merge a `main` (o lanza el workflow a mano desde *Actions*).
 3. La app queda en `https://<usuario>.github.io/horator/`. En el móvil: ábrela y usa *Añadir a pantalla de inicio*.
 
-La web no se indexa en buscadores (`noindex` + `robots.txt`), pero quien tenga el enlace puede abrirla. Pages es estático: los personajes usan el motor local (la IA necesita la función serverless, p. ej. en Vercel). Publicar Pages desde un repo privado requiere GitHub Pro.
+La web no se indexa en buscadores (`noindex` + `robots.txt`), pero quien tenga el enlace puede abrirla. Pages es estático: no hay servidor propio, pero los personajes pueden usar la IA pública gratuita (con tu consentimiento) o tu propio proveedor; la función con Claude necesita Vercel. Publicar Pages desde un repo privado requiere GitHub Pro.
 
 ## Arquitectura
 
 ```
 src/
-  lib/        lexicon (puntuación, muletillas, ritmo) · speech (Web Speech API) · tts · feedback (hápticos + sfx sintetizados) · share (tarjeta PNG) · roleplayApi
+  lib/        lexicon (puntuación, muletillas, ritmo) · speech (Web Speech API) · tts · feedback (hápticos + sfx sintetizados) · share (tarjeta PNG) · roleplayApi (cadena de proveedores IA) · rolePrompt · telegram (Mini App)
   data/       personajes y escenarios · retos Arcade · rondas de sinónimos · árbol de poderes · misiones
   store/      progress.ts (lógica pura del metajuego, testeada) · game.ts (zustand + persistencia local)
   modes/      roleplay/ · arcade/ · synonyms/

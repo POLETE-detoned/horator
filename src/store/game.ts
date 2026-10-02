@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import type { PerkId } from '../data/powers';
 import { configureFeedback } from '../lib/feedback';
+import { DEFAULT_AI, type AiConfig } from '../lib/roleplayApi';
 import {
   applyEvent,
   claimNode,
@@ -17,6 +18,8 @@ export interface Settings {
   /** Modo silencioso: sin sonido ni voz; las notas de voz se muestran subtituladas. */
   silent: boolean;
   haptics: boolean;
+  /** Proveedores de IA para los personajes (la clave propia, si existe, solo vive en este dispositivo). */
+  ai: AiConfig;
 }
 
 interface GameState {
@@ -38,7 +41,7 @@ export const useGame = create<GameState>()(
   persist(
     (set, get) => ({
       progress: initialProgress(),
-      settings: { silent: false, haptics: true },
+      settings: { silent: false, haptics: true, ai: DEFAULT_AI },
       rewards: [],
       record: (ev) => {
         const { p, reward } = applyEvent(get().progress, ev, dayKey());
@@ -66,7 +69,11 @@ export const useGame = create<GameState>()(
         return {
           ...current,
           progress: { ...current.progress, ...p?.progress },
-          settings: { ...current.settings, ...p?.settings },
+          settings: {
+            ...current.settings,
+            ...p?.settings,
+            ai: { ...DEFAULT_AI, ...p?.settings?.ai, custom: { ...DEFAULT_AI.custom, ...p?.settings?.ai?.custom } },
+          },
         };
       },
       onRehydrateStorage: () => (state) => {

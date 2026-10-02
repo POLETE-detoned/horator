@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'motion/react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Confetti } from '../../components/Confetti';
+import { OpenInBrowser } from '../../components/OpenInBrowser';
 import { Stars } from '../../components/Stars';
 import { CHARACTERS, MAX_TURNS, getCharacter, type Character, type CharacterId, type Scenario } from '../../data/characters';
 import { haptic, sfx } from '../../lib/feedback';
@@ -54,6 +55,9 @@ export function RoleplayScreen({ onExit }: { onExit: () => void }) {
   const perks = useGame((s) => s.progress.perks);
   const silent = useGame((s) => s.settings.silent);
   const record = useGame((s) => s.record);
+  const freeAi = useGame((s) => s.settings.ai.freeAi);
+  const setSettings = useGame((s) => s.setSettings);
+  const aiSettings = useGame((s) => s.settings.ai);
   const hasChuleta = perks.includes('chuleta');
 
   const [{ c, s, n }, setConv] = useState(() => nextConversation(perks));
@@ -177,9 +181,11 @@ export function RoleplayScreen({ onExit }: { onExit: () => void }) {
     const turn = turnRef.current;
     const history: HistoryItem[] = [...msgs, userMsg].map((m) => ({ from: m.from, text: m.text }));
     // El personaje "graba" un mínimo para que la espera se sienta como parte de la ficción.
-    const [ai] = await Promise.all([aiTurn(c.id, s.id, meterRef.current, history), new Promise((r) => setTimeout(r, 900))]);
+    const local = offlineTurn(c, s, stars, meterRef.current, turn);
+    const input = { characterId: c.id, scenarioId: s.id, meter: meterRef.current, history };
+    const [ai] = await Promise.all([aiTurn(input, useGame.getState().settings.ai, local), new Promise((r) => setTimeout(r, 900))]);
     if (convKey.current !== key) return;
-    const res = ai ?? offlineTurn(c, s, stars, meterRef.current, turn);
+    const res = ai ?? local;
 
     const nextMeter = Math.max(0, Math.min(100, meterRef.current + res.delta));
     meterRef.current = nextMeter;
@@ -308,6 +314,28 @@ export function RoleplayScreen({ onExit }: { onExit: () => void }) {
           </span>
         </div>
       </header>
+
+      {/* Consentimiento de la IA gratuita: se pregunta una sola vez */}
+      {freeAi === 'unset' && (
+        <motion.div
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          style={{ margin: '8px 12px 0', padding: 12, borderRadius: 16, background: 'var(--card-2)', fontSize: 14 }}
+        >
+          <div style={{ fontWeight: 900 }}>✨ ¿Activar IA gratuita?</div>
+          <div className="muted" style={{ fontSize: 13, margin: '2px 0 8px' }}>
+            Los personajes reaccionarán a lo que dices. Tus respuestas transcritas se envían a un servicio público externo (sin audio ni vídeo).
+          </div>
+          <div className="row" style={{ gap: 8 }}>
+            <button className="chip" style={{ background: 'var(--good)', color: '#04210f' }} onClick={() => setSettings({ ai: { ...aiSettings, freeAi: 'on' } })}>
+              Activar
+            </button>
+            <button className="chip" onClick={() => setSettings({ ai: { ...aiSettings, freeAi: 'off' } })}>
+              Ahora no
+            </button>
+          </div>
+        </motion.div>
+      )}
 
       {/* Conversación */}
       <div ref={scrollRef} className="scroll" style={{ margin: 0, padding: '14px 12px', display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -448,6 +476,7 @@ export function RoleplayScreen({ onExit }: { onExit: () => void }) {
             <button className="btn" style={{ ['--c' as string]: 'var(--persuasion)', minHeight: 52, padding: '0 18px' }} onClick={sendTyped}>
               ➤
             </button>
+            {!speechSupported() && <OpenInBrowser label="Voz" />}
             {speechSupported() && (
               <button className="icon-btn" onClick={() => setTyping(false)} aria-label="Responder con voz">
                 🎙️
