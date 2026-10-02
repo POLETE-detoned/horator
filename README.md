@@ -47,6 +47,16 @@ cp .env.example .env.local   # añade ANTHROPIC_API_KEY
 - En Vercel, `api/roleplay.ts` se despliega como función; define `ANTHROPIC_API_KEY` en las variables del proyecto.
 - **Sin clave o sin conexión** el juego sigue funcionando: el endpoint responde 503 y el cliente usa el motor local de respuestas de cada escenario.
 
+## Publicar en GitHub Pages
+
+El workflow `.github/workflows/pages.yml` compila, pasa los tests y publica `dist/` en cada push a `main`.
+
+1. *Settings → Pages → Build and deployment → Source:* **GitHub Actions**.
+2. Haz merge a `main` (o lanza el workflow a mano desde *Actions*).
+3. La app queda en `https://<usuario>.github.io/horator/`. En el móvil: ábrela y usa *Añadir a pantalla de inicio*.
+
+La web no se indexa en buscadores (`noindex` + `robots.txt`), pero quien tenga el enlace puede abrirla. Pages es estático: los personajes usan el motor local (la IA necesita la función serverless, p. ej. en Vercel). Publicar Pages desde un repo privado requiere GitHub Pro.
+
 ## Arquitectura
 
 ```
