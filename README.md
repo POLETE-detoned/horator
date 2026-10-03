@@ -10,6 +10,22 @@ Juego móvil (PWA, mobile-first) para mejorar la **oratoria** y el **vocabulario
 | 📸 **Arcade 60 s** | Claridad | Cámara frontal a pantalla completa y un reto aleatorio (tema × tono). HUD en vivo: medidor de ritmo (ppm) con muelle, destello rojo + vibración por cada muletilla, aviso de silencios largos, palabras expertas que aparecen al decirlas. Resultado en tarjeta compartible (PNG, sin vídeo). **El vídeo nunca se graba ni se sube.** |
 | 🃏 **Caza-sinónimos** | Léxico | Frase plana arriba; desliza tarjetas (→ elegir, ← descartar) con física de inercia, rebote y rotación. Combos con multiplicador, 5 niveles de dificultad léxica desbloqueables y una explicación breve por cada trampa. 100 % jugable sin sonido. |
 
+## Contenido sin repeticiones
+
+| Modo | Niveles | Contenido |
+| --- | --- | --- |
+| 🃏 Caza-sinónimos | Básico, Profesional, Preciso, Culto, Maestro | 550 frases por nivel (2.750), cada una con sus alternativas buenas y sus trampas explicadas |
+| 📸 Arcade 60 s | Básico, Medio, Avanzado (se elige antes del reto) | 550 temas por nivel (1.650) × 40 tonos × 3 formatos por nivel |
+| 🎙️ Notas de voz | Lucía (Básico), Marta (Medio), Don Ramiro (Avanzado) | 550 situaciones por personaje (1.650) |
+
+Cada nivel funciona como una **bolsa sin repetición** (`src/lib/bag.ts`): no vuelve a salir una frase, un tema o una situación hasta haber jugado todos los de ese nivel, y la bolsa se guarda en el dispositivo, así que tampoco se repite entre partidas.
+
+El contenido está en `src/data/content/` (un elemento por línea) y cada modo lo descarga solo al abrirse:
+
+- `sinonimos/nN-*.ts`: `Frase con el {fragmento}. | buena, buena, buena | trampa = Por qué no vale. | trampa = Por qué no vale.`
+- `arcade/nN-*.ts`: el tema como oración que sigue a «Convénceme de que…».
+- `escenarios/<personaje>-*.ts`: `Título | Primera nota de voz | Objetivo | palabra, palabra, palabra`. Tras añadir un archivo de situaciones hay que importarlo en `escenarios/index.ts`.
+
 ## Metajuego
 
 - **Poderes** (árbol de habilidades): Persuasión, Claridad y Léxico se cargan jugando cada modo. Cada nodo es una ventaja real: nuevos personajes, *Chuleta*, *Metrónomo*, *Radar de muletillas*, *Respiro*, *Comodín*, *Escudo de combo*, *Reloj de arena*, *Multiplicador ×5*…
@@ -69,8 +85,8 @@ La web no se indexa en buscadores (`noindex` + `robots.txt`), pero quien tenga e
 
 ```
 src/
-  lib/        lexicon (puntuación, muletillas, ritmo) · speech (Web Speech API) · tts · feedback (hápticos + sfx sintetizados) · share (tarjeta PNG) · roleplayApi (cadena de proveedores IA) · rolePrompt · telegram (Mini App)
-  data/       personajes y escenarios · retos Arcade · rondas de sinónimos · árbol de poderes · misiones
+  lib/        bag (sin repeticiones) · lexicon (puntuación, muletillas, ritmo) · speech (Web Speech API) · tts · feedback (hápticos + sfx sintetizados) · share (tarjeta PNG) · roleplayApi (cadena de proveedores IA) · rolePrompt · telegram (Mini App)
+  data/       personajes · retos Arcade · sinónimos · árbol de poderes · misiones · content/ (todas las frases, temas y situaciones)
   store/      progress.ts (lógica pura del metajuego, testeada) · game.ts (zustand + persistencia local)
   modes/      roleplay/ · arcade/ · synonyms/
   screens/    Lobby · Powers

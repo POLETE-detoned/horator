@@ -299,9 +299,9 @@ export function RoleplayScreen({ onExit }: { onExit: () => void }) {
               </div>
             </span>
           </button>
-          <span className="chip" style={{ fontSize: 12 }}>
+          <button className="chip" style={{ fontSize: 12 }} onClick={() => setPicker(true)}>
             ⇄ Cambiar
-          </span>
+          </button>
         </div>
         {/* Medidor de convencimiento: la barra ES el marcador de la partida */}
         <div className="row" style={{ marginTop: 10, gap: 8 }}>
