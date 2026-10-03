@@ -2,7 +2,7 @@ import { AnimatePresence, motion, useSpring, useTransform } from 'motion/react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Confetti } from '../../components/Confetti';
 import { OpenInBrowser } from '../../components/OpenInBrowser';
-import { ARCADE_SECONDS, LONG_SILENCE_S, randomPrompt, type ArcadePrompt } from '../../data/prompts';
+import { ARCADE_LEVELS, ARCADE_SECONDS, LONG_SILENCE_S, randomPrompt, type ArcadeLevel, type ArcadePrompt } from '../../data/prompts';
 import { haptic, sfx } from '../../lib/feedback';
 import { expertWords, findFillers, PACE, paceZone } from '../../lib/lexicon';
 import { shareCard } from '../../lib/share';
@@ -13,6 +13,16 @@ import { summarize, windowWpm, type ArcadeResult, type Sample } from './metrics'
 type Phase = 'intro' | 'live' | 'result';
 const MAX_WPM = 220;
 const BLANK_AFTER_MS = 1500;
+const LEVEL_KEY = 'horator.arcadeLevel';
+
+function savedLevel(): ArcadeLevel {
+  try {
+    const n = Number(localStorage.getItem(LEVEL_KEY));
+    return n === 2 || n === 3 ? n : 1;
+  } catch {
+    return 1;
+  }
+}
 
 export function ArcadeScreen({ onExit }: { onExit: () => void }) {
   const record = useGame((s) => s.record);
@@ -21,7 +31,8 @@ export function ArcadeScreen({ onExit }: { onExit: () => void }) {
   const hasRespiro = usePerk('respiro');
 
   const [phase, setPhase] = useState<Phase>('intro');
-  const [prompt, setPrompt] = useState<ArcadePrompt>(() => randomPrompt());
+  const [level, setLevel] = useState<ArcadeLevel>(savedLevel);
+  const [prompt, setPrompt] = useState<ArcadePrompt>(() => randomPrompt(level));
   const [camState, setCamState] = useState<'pending' | 'on' | 'off'>('pending');
   const [timeLeft, setTimeLeft] = useState(ARCADE_SECONDS);
   const [caption, setCaption] = useState('');
@@ -387,11 +398,39 @@ export function ArcadeScreen({ onExit }: { onExit: () => void }) {
               style={{ background: 'rgba(0,0,0,.4)' }}
               onClick={() => {
                 haptic.tap();
-                setPrompt((p) => randomPrompt(Math.random, p.text));
+                setPrompt(randomPrompt(level, Math.random, prompt.topic));
               }}
             >
               🎲 Otro reto
             </button>
+            <div className="row" role="radiogroup" aria-label="Nivel del reto" style={{ gap: 6 }}>
+              {ARCADE_LEVELS.map((l) => (
+                <button
+                  key={l.level}
+                  role="radio"
+                  aria-checked={l.level === level}
+                  title={l.desc}
+                  className="chip"
+                  style={{
+                    background: l.level === level ? 'var(--claridad)' : 'rgba(0,0,0,.4)',
+                    color: l.level === level ? '#04283a' : undefined,
+                  }}
+                  onClick={() => {
+                    if (l.level === level) return;
+                    haptic.tap();
+                    setLevel(l.level);
+                    try {
+                      localStorage.setItem(LEVEL_KEY, String(l.level));
+                    } catch {
+                      /* sin almacenamiento */
+                    }
+                    setPrompt(randomPrompt(l.level));
+                  }}
+                >
+                  {l.name}
+                </button>
+              ))}
+            </div>
           </motion.div>
         )}
 
@@ -537,7 +576,7 @@ export function ArcadeScreen({ onExit }: { onExit: () => void }) {
                 className="btn"
                 style={{ flex: 1.3, ['--c' as string]: 'var(--claridad)', color: '#04283a' }}
                 onClick={() => {
-                  setPrompt((p) => randomPrompt(Math.random, p.text));
+                  setPrompt(randomPrompt(level, Math.random, prompt.topic));
                   setPhase('intro');
                 }}
               >

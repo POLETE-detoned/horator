@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { useState } from 'react';
-import { customEndpoint, FREE_PRESET } from '../lib/roleplayApi';
+import { customEndpoint, FREE_PRESET } from '../lib/aiConfig';
 import { haptic } from '../lib/feedback';
 import { useGame } from '../store/game';
 

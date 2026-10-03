@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import type { PerkId } from '../data/powers';
 import { configureFeedback } from '../lib/feedback';
-import { DEFAULT_AI, type AiConfig } from '../lib/roleplayApi';
+import { DEFAULT_AI, type AiConfig } from '../lib/aiConfig';
 import {
   applyEvent,
   claimNode,

@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { MAX_LEVEL, ROUNDS, splitSentence } from '../src/data/synonyms';
+import { MAX_LEVEL, splitSentence } from '../src/data/synonyms';
+import { ROUNDS } from '../src/data/synonymRounds';
 import { buildDeck, multiplier, pickRound } from '../src/modes/synonyms/engine';
 
 describe('contenido', () => {

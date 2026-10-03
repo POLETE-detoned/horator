@@ -1,4 +1,5 @@
 import type { VoiceProfile } from '../lib/tts';
+import { LUCIA, MARTA, RAMIRO } from './content/escenarios';
 
 export type CharacterId = 'lucia' | 'marta' | 'ramiro';
 
@@ -11,10 +12,16 @@ export interface Scenario {
   goal: string;
   /** Palabras poderosas sugeridas por el poder "Chuleta". */
   powerWords: string[];
-  /** Respuestas de reserva sin conexión, por calidad de la respuesta del jugador. */
-  offline: { low: string[]; mid: string[]; high: string[] };
-  win: string;
-  lose: string;
+  /** Respuestas de reserva sin conexión, por calidad de la respuesta del jugador (si faltan, las del personaje). */
+  offline?: OfflineReplies;
+  win?: string;
+  lose?: string;
+}
+
+export interface OfflineReplies {
+  low: string[];
+  mid: string[];
+  high: string[];
 }
 
 export interface Character {
@@ -28,6 +35,12 @@ export interface Character {
   persona: string;
   /** Paciencia: cuánto baja el medidor con una mala respuesta. */
   toughness: number;
+  /** Dificultad que representa el personaje. */
+  level: 'Básico' | 'Medio' | 'Avanzado';
+  /** Respuestas sin conexión comunes a todas sus situaciones. */
+  offline: OfflineReplies;
+  win: string[];
+  lose: string[];
   scenarios: Scenario[];
 }
 
@@ -42,6 +55,45 @@ export const CHARACTERS: Character[] = [
     persona:
       'Lucía, 31 años, amiga íntima del jugador. Cercana, bromista, un poco dramática y escéptica. Habla de tú, con expresiones coloquiales de España. Se deja convencer por argumentos con gracia y concretos.',
     toughness: 0.6,
+    level: 'Básico',
+    offline: {
+      low: [
+        'Mmm… eso me lo dice cualquiera. Dame algo más concreto, porfa.',
+        'Ya, pero eso no me ayuda mucho. ¿Por qué lo dices?',
+        'Tía, eso suena a frase de taza de desayuno. Concreta un poco.',
+        '¿Y ya está? Me esperaba algo con más chicha.',
+        'No me convences, ¿eh? Dame un motivo de verdad.',
+        'Uf, así no. Venga, que tú sabes hacerlo mejor.',
+      ],
+      mid: [
+        'Vale, eso tiene sentido… pero aún tengo mis dudas.',
+        'Hmm, me estás convenciendo un poco. Sigue por ahí.',
+        'Bueno, bueno… suena mejor de lo que pensaba.',
+        'Oye, no está mal. ¿Y qué más?',
+        'Vale, eso me lo apunto. Pero dime algo que me termine de convencer.',
+        'Me gusta por dónde vas. Un empujoncito más.',
+      ],
+      high: [
+        '¡Uf! Vale, eso me ha llegado. Visto así, lo tengo bastante más claro.',
+        '¡Me encanta cómo lo has dicho! Es justo lo que necesitaba oír.',
+        'Jajaja, vale, vale, ¡me has ganado!',
+        '¡Dicho así es imposible decir que no!',
+        'Madre mía, qué bien argumentas cuando quieres.',
+        'Vale, eso ha sido brillante. Me lo guardo.',
+      ],
+    },
+    win: [
+      '¡Decidido! Te has ganado una cena, y la eliges tú. 🥂',
+      '¡Vale, me has convencido del todo! Eres un crack.',
+      '¡Hecho! No sé cómo lo haces, pero siempre me acabas liando para bien.',
+      'Me has convencido. Te debo una, y de las grandes.',
+    ],
+    lose: [
+      'Bueno… creo que lo consultaré con la almohada. Gracias igualmente.',
+      'Lo siento, esta vez no me has convencido. ¡La próxima será!',
+      'Mmm, me quedo como estaba. Pero gracias por intentarlo.',
+      'Nada, sigo sin verlo claro. Otro día lo hablamos.',
+    ],
     scenarios: [
       {
         id: 'lisboa',
@@ -88,6 +140,7 @@ export const CHARACTERS: Character[] = [
         win: '¡Nombre y pitch aprobados! Ya puedes ir preparando la ronda de financiación. 🐶',
         lose: 'Creo que de momento lo dejamos en idea de bar…',
       },
+      ...LUCIA,
     ],
   },
   {
@@ -100,6 +153,45 @@ export const CHARACTERS: Character[] = [
     persona:
       'Marta Vidal, directora de talento en una gran empresa. Profesional, educada, directa e incisiva. Habla de usted al principio. Valora la concreción, los ejemplos con resultados medibles y el vocabulario preciso. Detecta respuestas vacías y repregunta.',
     toughness: 1,
+    level: 'Medio',
+    offline: {
+      low: [
+        'Entiendo. Pero necesito algo más concreto. ¿Qué pasó exactamente?',
+        'Eso es muy general. ¿Podría ponerme un ejemplo real?',
+        'Eso lo dicen todos los candidatos. ¿Qué le hace distinto?',
+        'Me cuesta verlo. Concrete, por favor.',
+        'Es una respuesta algo vaga. Desarrolle, por favor.',
+        'No me ha quedado claro. ¿Puede ser más preciso?',
+      ],
+      mid: [
+        'Bien, vamos avanzando. ¿Puede demostrarlo con un dato?',
+        'Interesante. ¿Qué resultado concreto obtuvo?',
+        'De acuerdo. ¿Y cómo lo aplicaría aquí?',
+        'Correcto. ¿Qué haría distinto hoy?',
+        'Bien. ¿Qué pasos daría en los primeros meses?',
+        'Eso suena razonable. Profundice un poco más.',
+      ],
+      high: [
+        'Muy bien explicado. Se nota que lo ha pensado de verdad.',
+        'Excelente. Eso es exactamente lo que buscamos.',
+        'Eso es convincente. Lo anoto.',
+        'Muy bien argumentado. Me deja una impresión muy sólida.',
+        'Visión clara y concreta. Me gusta.',
+        'Eso demuestra mucha madurez profesional.',
+      ],
+    },
+    win: [
+      'Le seré sincera: es de las mejores respuestas que he oído hoy. Pasamos a la siguiente fase.',
+      'Me ha convencido. Prepárese para conocer al equipo la semana que viene.',
+      'Perfecto. Tiene el perfil que buscamos. Seguimos adelante.',
+      'Muy bien. Le llamaremos pronto con buenas noticias.',
+    ],
+    lose: [
+      'Gracias por su tiempo. Le contactaremos con lo que decidamos.',
+      'Entendido. Seguiremos valorando al resto de candidatos.',
+      'Gracias. Creo que buscamos un perfil con respuestas más concretas.',
+      'De acuerdo. Lo tendremos en cuenta. Buenos días.',
+    ],
     scenarios: [
       {
         id: 'fracaso',
@@ -145,6 +237,7 @@ export const CHARACTERS: Character[] = [
         win: 'Perfecto. Tiene la visión que buscamos. Seguimos adelante.',
         lose: 'Gracias. Creo que necesitamos un perfil con una visión más definida.',
       },
+      ...MARTA,
     ],
   },
   {
@@ -157,6 +250,45 @@ export const CHARACTERS: Character[] = [
     persona:
       'Don Ramiro, 64 años, dueño de una cadena de ferreterías. Gruñón, impaciente, desconfiado y con prisa. Interrumpe, exige soluciones y odia las excusas y la palabrería. Se ablanda poco a poco cuando le dan soluciones concretas, empatía real y compromisos con fecha.',
     toughness: 1.3,
+    level: 'Avanzado',
+    offline: {
+      low: [
+        '¡No me cuente historias! Quiero soluciones.',
+        '¿Eso es todo lo que tiene que decir? Increíble.',
+        'Palabrería. Ya me las sé todas.',
+        'No me convence. ¿Algo más?',
+        'Excusas, excusas. Así no vamos a ningún sitio.',
+        'Mire, no tengo todo el día. Vaya al grano.',
+      ],
+      mid: [
+        'Bueno… eso ya es algo. ¿Y cuándo exactamente?',
+        'Hmm. Sigo enfadado, pero le escucho.',
+        'Bien que lo reconozca. ¿Y qué va a cambiar?',
+        'Eso suena algo mejor. Concrete más.',
+        'Hmm. Siga, a ver.',
+        'Vale, vale. Pero quiero compromisos, no promesas.',
+      ],
+      high: [
+        'Vale. Eso es hablar claro. Así sí.',
+        'Hmm… bien. Eso me tranquiliza bastante, la verdad.',
+        'Eso es asumir responsabilidad. Lo valoro.',
+        'Vale, eso son números que entiendo.',
+        'Bien. Eso es lo que quería oír.',
+        'Hombre, visto así… tiene usted razón.',
+      ],
+    },
+    win: [
+      'De acuerdo. Me ha convencido. Pero que no se repita, ¿eh? Seguimos trabajando juntos.',
+      'Está bien. Le doy una oportunidad. No la desaproveche.',
+      'Vale. Trato hecho. Y no me falle.',
+      'Hmm… está bien, me quedo. Pero le estaré vigilando.',
+    ],
+    lose: [
+      '¡Se acabó! Me busco otro proveedor. Buenos días.',
+      'Lo siento, ya he perdido demasiado tiempo.',
+      'No. Así no. Hablaré con su jefe.',
+      'Lo siento, los números mandan. Me voy.',
+    ],
     scenarios: [
       {
         id: 'retraso',
@@ -203,11 +335,18 @@ export const CHARACTERS: Character[] = [
         win: 'Vale. Tiene una segunda oportunidad. No la desaproveche.',
         lose: 'Lo siento, ya he perdido demasiado tiempo.',
       },
+      ...RAMIRO,
     ],
   },
 ];
 
 export const getCharacter = (id: CharacterId) => CHARACTERS.find((c) => c.id === id)!;
+
+const pickOne = (arr: string[], rand: () => number) => arr[Math.floor(rand() * arr.length)];
+
+/** Frase de cierre sin IA: la propia de la situación o, si no tiene, una del personaje. */
+export const closingLine = (c: Character, s: Scenario, win: boolean, rand: () => number = Math.random) =>
+  (win ? s.win : s.lose) ?? pickOne(win ? c.win : c.lose, rand);
 
 /** Turnos máximos por conversación: corta, como una partida. */
 export const MAX_TURNS = 4;

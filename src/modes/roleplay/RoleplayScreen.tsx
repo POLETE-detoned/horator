@@ -3,7 +3,8 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { Confetti } from '../../components/Confetti';
 import { OpenInBrowser } from '../../components/OpenInBrowser';
 import { Stars } from '../../components/Stars';
-import { CHARACTERS, MAX_TURNS, getCharacter, type Character, type CharacterId, type Scenario } from '../../data/characters';
+import { CHARACTERS, MAX_TURNS, closingLine, getCharacter, type Character, type CharacterId, type Scenario } from '../../data/characters';
+import { drawFromBag } from '../../lib/bag';
 import { haptic, sfx } from '../../lib/feedback';
 import { analyze, starsFor, type LexicalReport, type Stars as StarCount } from '../../lib/lexicon';
 import { aiTurn, offlineTurn, type HistoryItem, type Mood } from '../../lib/roleplayApi';
@@ -33,22 +34,33 @@ function unlockedIds(perks: string[]): CharacterId[] {
   return CHARACTERS.filter((c) => c.id === 'lucia' || perks.includes(c.id)).map((c) => c.id);
 }
 
-/** Siguiente conversación: rota escenarios del último personaje para empezar en un toque. */
+/** Siguiente conversación: situación al azar del último personaje, sin repetir hasta haberlas jugado todas. */
 let nonce = 0;
+
+function readLast(): { id?: CharacterId; s?: string } {
+  try {
+    return JSON.parse(localStorage.getItem(LAST_KEY) ?? '{}');
+  } catch {
+    return {};
+  }
+}
+
+function saveLast(id: CharacterId, scenarioId: string) {
+  try {
+    localStorage.setItem(LAST_KEY, JSON.stringify({ id, s: scenarioId }));
+  } catch {
+    /* sin almacenamiento */
+  }
+}
 
 function nextConversation(perks: string[], prefer?: CharacterId): { c: Character; s: Scenario; n: number } {
   const ids = unlockedIds(perks);
-  let last: { id?: CharacterId; i?: number } = {};
-  try {
-    last = JSON.parse(localStorage.getItem(LAST_KEY) ?? '{}');
-  } catch {
-    /* sin datos previos */
-  }
+  const last = readLast();
   const id = prefer ?? (last.id && ids.includes(last.id) ? last.id : ids[ids.length - 1]);
   const c = getCharacter(id);
-  const i = last.id === id ? ((last.i ?? -1) + 1) % c.scenarios.length : 0;
-  localStorage.setItem(LAST_KEY, JSON.stringify({ id, i }));
-  return { c, s: c.scenarios[i], n: ++nonce };
+  const s = drawFromBag(`rp-${id}`, c.scenarios, { exclude: last.s ? [last.s] : [] });
+  saveLast(id, s.id);
+  return { c, s, n: ++nonce };
 }
 
 export function RoleplayScreen({ onExit }: { onExit: () => void }) {
@@ -197,7 +209,7 @@ export function RoleplayScreen({ onExit }: { onExit: () => void }) {
     const win = nextMeter >= 100 || (turn >= MAX_TURNS && nextMeter >= WIN_AT_END);
     const over = win || turn >= MAX_TURNS;
     // Sin IA, el cierre usa las frases de victoria/derrota del escenario.
-    const reply = over && res.offline ? (win ? s.win : s.lose) : res.reply;
+    const reply = over && res.offline ? closingLine(c, s, win) : res.reply;
     await npcSays(reply);
     if (convKey.current !== key) return;
     if (over) {
@@ -236,12 +248,9 @@ export function RoleplayScreen({ onExit }: { onExit: () => void }) {
     return () => clearTimeout(t);
   }, [hint]);
 
-  const switchTo = (id: CharacterId, scenario?: Scenario) => {
+  const switchTo = (id: CharacterId) => {
     setPicker(false);
-    if (scenario) {
-      localStorage.setItem(LAST_KEY, JSON.stringify({ id, i: getCharacter(id).scenarios.indexOf(scenario) }));
-      setConv({ c: getCharacter(id), s: scenario, n: ++nonce });
-    } else setConv(nextConversation(perks, id));
+    setConv(nextConversation(perks, id));
   };
 
   const status =
@@ -555,23 +564,18 @@ export function RoleplayScreen({ onExit }: { onExit: () => void }) {
                       <div>
                         <div style={{ fontWeight: 900 }}>{ch.name}</div>
                         <div className="muted" style={{ fontSize: 13 }}>
-                          {locked ? 'Desbloquéalo en Poderes · Persuasión' : ch.role}
+                          {locked ? 'Desbloquéalo en Poderes · Persuasión' : `${ch.role} · Nivel ${ch.level}`}
                         </div>
                       </div>
                     </div>
                     {!locked && (
-                      <div className="row" style={{ flexWrap: 'wrap', gap: 6 }}>
-                        {ch.scenarios.map((sc) => (
-                          <button
-                            key={sc.id}
-                            className="chip"
-                            onClick={() => switchTo(ch.id, sc)}
-                            style={{ background: sc.id === s.id && ch.id === c.id ? ch.color : undefined }}
-                          >
-                            {sc.title}
-                          </button>
-                        ))}
-                      </div>
+                      <button
+                        className="chip"
+                        onClick={() => switchTo(ch.id)}
+                        style={{ background: ch.id === c.id ? ch.color : undefined }}
+                      >
+                        🎲 Nueva situación · {ch.scenarios.length} distintas
+                      </button>
                     )}
                   </div>
                 );

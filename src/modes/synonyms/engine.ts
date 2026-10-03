@@ -1,4 +1,6 @@
-import { ROUNDS, type SynonymRound } from '../../data/synonyms';
+import { roundsOfLevel } from '../../data/synonymRounds';
+import type { SynonymRound } from '../../data/synonyms';
+import { drawFromBag, type BagStorage } from '../../lib/bag';
 
 export interface Card {
   id: string;
@@ -28,13 +30,13 @@ export function buildDeck(round: SynonymRound, rand: () => number = Math.random)
   return deck;
 }
 
-/** Elige la siguiente frase: sobre todo del nivel actual, a veces de niveles inferiores, sin repetir recientes. */
-export function pickRound(level: number, recent: string[], rand: () => number = Math.random): SynonymRound {
-  const useLower = level > 1 && rand() < 0.3;
-  let pool = ROUNDS.filter((r) => (useLower ? r.level < level : r.level === level) && !recent.includes(r.id));
-  if (!pool.length) pool = ROUNDS.filter((r) => r.level <= level && !recent.includes(r.id));
-  if (!pool.length) pool = ROUNDS.filter((r) => r.level <= level);
-  return pool[Math.floor(rand() * pool.length)];
+/**
+ * Elige la siguiente frase: sobre todo del nivel actual y a veces (30 %) de un nivel inferior.
+ * Cada nivel es una bolsa sin repetición: no vuelve a salir una frase hasta haber jugado todas las de ese nivel.
+ */
+export function pickRound(level: number, recent: readonly string[] = [], rand: () => number = Math.random, storage?: BagStorage): SynonymRound {
+  const target = level > 1 && rand() < 0.3 ? 1 + Math.floor(rand() * (level - 1)) : level;
+  return drawFromBag(`syn${target}`, roundsOfLevel(target), { rand, exclude: recent, storage });
 }
 
 export const multiplier = (combo: number, cap: number) => Math.min(cap, 1 + Math.floor(combo / 3));

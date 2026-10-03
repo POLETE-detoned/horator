@@ -1,14 +1,17 @@
 import { AnimatePresence, motion } from 'motion/react';
-import { useCallback, useEffect, useState } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useState } from 'react';
 import { RewardLayer } from './components/RewardLayer';
 import { unlockAudio } from './lib/feedback';
 import { getTg, initTelegram } from './lib/telegram';
-import { ArcadeScreen } from './modes/arcade/ArcadeScreen';
-import { RoleplayScreen } from './modes/roleplay/RoleplayScreen';
-import { SynonymScreen } from './modes/synonyms/SynonymScreen';
 import { Lobby } from './screens/Lobby';
 import { Powers } from './screens/Powers';
 import { useGame } from './store/game';
+
+// Cada modo (con sus miles de frases) se descarga aparte: el lobby carga al instante y el
+// service worker los precachea igualmente tras la primera visita.
+const RoleplayScreen = lazy(() => import('./modes/roleplay/RoleplayScreen').then((m) => ({ default: m.RoleplayScreen })));
+const ArcadeScreen = lazy(() => import('./modes/arcade/ArcadeScreen').then((m) => ({ default: m.ArcadeScreen })));
+const SynonymScreen = lazy(() => import('./modes/synonyms/SynonymScreen').then((m) => ({ default: m.SynonymScreen })));
 
 export type Route = 'lobby' | 'powers' | 'roleplay' | 'arcade' | 'synonyms';
 
@@ -76,9 +79,11 @@ export default function App() {
         >
           {route === 'lobby' && <Lobby go={go} />}
           {route === 'powers' && <Powers go={go} />}
-          {route === 'roleplay' && <RoleplayScreen onExit={back} />}
-          {route === 'arcade' && <ArcadeScreen onExit={back} />}
-          {route === 'synonyms' && <SynonymScreen onExit={back} />}
+          <Suspense fallback={null}>
+            {route === 'roleplay' && <RoleplayScreen onExit={back} />}
+            {route === 'arcade' && <ArcadeScreen onExit={back} />}
+            {route === 'synonyms' && <SynonymScreen onExit={back} />}
+          </Suspense>
         </motion.div>
       </AnimatePresence>
       <RewardLayer />
