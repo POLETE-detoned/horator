@@ -27,7 +27,7 @@ El cliente difícil | Te ha tocado atender al cliente más pesado del barrio y t
 Proponer un descuento | ¿Descuentos a los jubilados? ¡Eso es regalar dinero! | Defiende la idea con argumentos | fidelidad, volumen, imagen, comunidad
 El cumpleaños de la tienda | La tienda cumple cuarenta años y quieres hacer una fiesta. ¿Para qué? | Convence del valor de celebrarlo | comunidad, clientes, imagen, historia
 La reclamación de un proveedor | Un proveedor dice que le hiciste un pedido sin permiso. ¿Es eso cierto? | Explica con transparencia | hechos, motivo, responsabilidad, solución
-El cambio de proveedor | Dices que hay un proveedor más barato. ¿Y si luego falla? | Presenta un análisis serio | datos, prueba, riesgo, ahorro
-La tienda online | Quieres montar la tienda online tú solo. ¿Sabes lo que dices? | Presenta un plan convincente | plan, inversión, ventas, aprendizaje
+Un proveedor más barato | Dices que hay un proveedor más barato. ¿Y si luego falla? | Presenta un análisis serio | datos, prueba, riesgo, ahorro
+Montar la web tú solo | Quieres montar la tienda online tú solo. ¿Sabes lo que dices? | Presenta un plan convincente | plan, inversión, ventas, aprendizaje
 El nuevo compañero | Me pides que el nuevo trabaje contigo. ¿No te basta con lo tuyo? | Argumenta la ventaja | formación, ayuda, equipo, eficiencia
 `;

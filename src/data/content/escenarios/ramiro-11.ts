@@ -5,7 +5,7 @@ La reunión de vecinos | Soy el presidente de la comunidad y me opongo a poner e
 El restaurante | ¡Llevo cuarenta minutos esperando el primer plato! ¿Es que aquí se cocina con leña? | Atiende al cliente furioso del restaurante | disculpa, información, detalle, rapidez
 El hotel | Mi habitación da a la carretera y no he dormido. ¡Quiero otra o me voy! | Resuelve la queja del huésped | cambio, disculpa, compensación, descanso
 El taller del coche | Me cobran cuatrocientos euros por cambiar el aceite. ¿Qué aceite es, de oliva virgen? | Explica la factura del taller | desglose, transparencia, revisión, confianza
-El banco | ¡Quiero hablar con el director! Me han cobrado una comisión que no entiendo. | Atiende al cliente del banco | escucha, explicación, revisión, solución
+En la sucursal | ¡Quiero hablar con el director! Me han cobrado una comisión que no entiendo. | Atiende al cliente del banco | escucha, explicación, revisión, solución
 El ayuntamiento | Llevo tres meses esperando una licencia de obra. ¿Esto es lo que hacen con mis impuestos? | Atiende al ciudadano con empatía | información, plazo, gestión, empatía
 El médico | Llevo una hora en la sala de espera. ¡Tengo una tienda que atender! | Calma al paciente | disculpa, información, empatía, alternativa
 El aeropuerto | ¡Han perdido mi maleta! Y dentro iban las muestras para la feria. | Atiende la reclamación del pasajero | localizar, compensación, solución, empatía
