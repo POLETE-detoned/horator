@@ -9,7 +9,7 @@ Tras los {preliminares}, empezó la reunión. | prolegómenos, preámbulos, prep
 Es un debatiente {combativo}. | pugnaz, belicoso, batallador | pugilista = Pugilista es boxeador. | pungente = Pungente es punzante.
 Un {cualquiera} entró a preguntar. | quídam, desconocido, fulano | quiste = Quiste es una bolsa anormal en el cuerpo. | quimera = Quimera es una ilusión imposible.
 Es una tradición {de raíces profundas}. | de gran raigambre, arraigada, ancestral | de gran raíz cuadrada = Es un término matemático. | de gran ramaje = Ramaje son ramas.
-Es un {mentiroso consumado}. | redomado embustero, embustero empedernido, mentiroso de tomo y lomo | redondo mentiroso = No tiene sentido. | redimido mentiroso = Redimido es salvado.
+Es un {mentiroso consumado}. | redomado embustero, embustero empedernido, mentiroso de tomo y lomo | redentor mentiroso = Redentor es quien salva o redime. | redimido mentiroso = Redimido es salvado.
 Se {deleitaba} con el sufrimiento ajeno. | regodeaba, recreaba, complacía | regateaba = Regatear es negociar el precio. | regentaba = Regentar es dirigir un negocio.
 Se mostró {poco dispuesto} a colaborar. | reticente, reacio, remiso | retinto = Retinto es de color muy oscuro. | reticular = Reticular tiene forma de red.
 Hizo un {juego de palabras} ingenioso. | retruécano, calambur, juego verbal | retroceso = Retroceso es ir hacia atrás. | retrovisor = Retrovisor es un espejo del coche.

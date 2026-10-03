@@ -74,7 +74,7 @@ Me {preocupa} el examen. | inquieta, agobia, quita el sueño | ocupa = Ocupar es
 {Come} despacio. | mastica, saborea la comida, disfruta | coma = Coma es un signo o un estado médico. | comenta = Comentar es opinar.
 {Camina} más deprisa. | anda, avanza | cambia = Cambiar es modificar. | calma = Calmar es tranquilizar.
 {Sube} el volumen. | aumenta, pon más alto, alza | suda = Sudar es transpirar. | sueña = Soñar es tener sueños.
-{Baja la voz}, por favor. | Habla más bajo, Susurra, Modera el tono | Baja la guardia = Es dejar de estar alerta. | Baña la voz = No tiene sentido: bañar es lavar con agua.
+{Baja la voz}, por favor. | Habla más bajo, Susurra, Modera el tono | Baja la guardia = Es dejar de estar alerta. | Baja el telón = Bajar el telón es terminar una función.
 {Para} el coche aquí. | detén, aparca, frena | paro = Cambia la persona. | pares = Par es igual o un conjunto de dos.
 {Sigue} recto. | continúa, tira, ve | siega = Segar es cortar la hierba. | persigue = Perseguir es ir detrás de alguien para alcanzarlo.
 {Gira} a la derecha. | tuerce, dobla, coge | grita = Gritar es chillar. | gime = Gemir es quejarse con sonidos.

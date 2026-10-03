@@ -34,7 +34,7 @@ Es un {trabajo} muy interesante. | puesto, empleo, cargo | trabajador = Trabajad
 El {sueldo} no está mal. | salario, pago | sueldo base = Es solo una parte del sueldo. | suelo = Suelo es el piso.
 Tengo {un horario} flexible. | una jornada, un turno | un horóscopo = Horóscopo es una predicción astrológica. | un horno = Horno es un electrodoméstico.
 Tengo {vacaciones} en agosto. | días libres, descanso, permiso | vacuidad = Vacuidad es vacío, falta de contenido. | vacantes = Vacante es un puesto libre.
-Hay un {puesto libre} en mi empresa. | una vacante, una plaza, una oferta de empleo | un puesto de mercado = Es un tenderete. | un puesto libre de impuestos = Cambia el sentido.
+Hay un {puesto libre} en mi empresa. | una vacante, una plaza, una oferta de empleo | un puesto de mercado = Es un tenderete. | un puesto de socorro = Es un lugar de primeros auxilios, no un empleo.
 Mis {compañeros} me ayudan mucho. | colegas, compañeros de equipo, colaboradores | compadres = Compadre es coloquial y familiar. | compinches = Compinche es cómplice en algo malo.
 El {jefe} me ha felicitado. | responsable, director, superior | jefazo = Es demasiado coloquial. | jefatura = Jefatura es el cargo u oficina, no la persona.
 He tenido {una mala experiencia} con mi anterior empresa. | un desencuentro, una etapa difícil, una experiencia negativa | un mal experimento = Experimento es una prueba científica. | una mala experta = Experto es una persona.

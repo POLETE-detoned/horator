@@ -48,7 +48,7 @@ Mi casa está {muy lejos}. | lejísimos, en el quinto pino, a trasmano | lejano 
 Mi casa está {muy cerca} del metro. | pegada, al lado, a dos pasos | cercada = Cercado es rodeado por una valla. | cercana de = Es incorrecto: se dice cercana al metro.
 Este barrio es {muy tranquilo}. | sosegado, apacible, silencioso | tranquilizado = Tranquilizado es quien ha sido calmado. | tranquilizante = Tranquilizante es un medicamento.
 El mercado está {muy animado}. | concurrido, bullicioso, lleno de vida | animalado = No es una palabra válida. | animoso = Animoso es quien tiene valor.
-Esta lámpara da {mucha luz}. | muchísima luz, una luz intensa, una luz potente | mucho lujo = Lujo es abundancia de riqueza. | mucha luna = No tiene sentido aquí.
+Esta lámpara da {mucha luz}. | muchísima luz, una luz intensa, una luz potente | mucho lujo = Lujo es abundancia de riqueza. | mucho lucero = Lucero es una estrella brillante, no una fuente de luz de una lámpara.
 El salón está {muy oscuro}. | sombrío, en penumbra, lóbrego | oscurantista = Oscurantista es quien se opone a difundir el conocimiento. | opaco = Opaco es que no deja pasar la luz, no que haya poca luz.
 La sopa está {muy espesa}. | densa, pastosa, consistente | espesura = Espesura es un bosque denso. | especiada = Especiado es con especias.
 La ensalada está {muy fresca}. | crujiente, recién hecha, lozana | fresquera = Fresquera es un armario para conservar alimentos. | refrigerada = Refrigerado es enfriado en nevera, no recién hecho.

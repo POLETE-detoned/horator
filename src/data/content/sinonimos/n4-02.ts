@@ -22,7 +22,7 @@ La investigación {sacó a la luz} la verdad. | reveló, desveló, destapó | re
 El escultor {trabajó} la madera a golpe de gubia. | desbastó, talló, labró | devastó = Devastar es destruir. | despistó = Despistar es confundir.
 La guerra {destruyó} la región. | devastó, asoló, arrasó | desbastó = Desbastar es quitar lo basto a un material. | desvistió = Desvestir es quitar la ropa.
 La noticia le {dejó sin habla}. | dejó atónito, dejó estupefacto, enmudeció | dejó sin hablar = Es incorrecto: se dice sin habla. | dejó hablando solo = Es dejar plantado a alguien.
-El orador {se alargó} demasiado. | se extendió, divagó, se explayó | se alongó = No es una palabra válida. | se alargó en metros = No tiene sentido.
+El orador {se alargó} demasiado. | se extendió, divagó, se explayó | se alongó = No es una palabra válida. | se alegró = Alegrarse es ponerse contento.
 El profesor {habló sin orden} sobre muchos temas. | divagó, se fue por las ramas, se dispersó | devaneó = Devanear es tener amoríos pasajeros. | divulgó = Divulgar es difundir.
 La prensa {difundió} la noticia. | divulgó, propagó, propaló | divagó = Divagar es hablar sin orden. | difuminó = Difuminar es desdibujar.
 El paisaje {se desdibujaba} con la niebla. | se difuminaba, se desvanecía, se esfumaba | se difundía = Difundirse es propagarse. | se divulgaba = Divulgar es difundir.

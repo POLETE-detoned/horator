@@ -23,8 +23,8 @@ Lo hizo {asumiendo las consecuencias}. | por su cuenta y riesgo, bajo su respons
 Lo hizo {sabiendo lo que hacía}. | a sabiendas, deliberadamente, adrede | a ciegas = A ciegas es sin saber. | a la ligera = A la ligera es sin pensar.
 Lo decidió {sin pensarlo bien}. | a la ligera, a la buena de Dios, irreflexivamente | a sabiendas = Es sabiendo lo que hacía. | a la larga = A la larga es con el paso del tiempo.
 {Con el paso del tiempo}, lo entenderás. | A la larga, Con los años, Andando el tiempo | A la ligera = Es sin pensar. | Al paso = Al paso es caminando o de camino.
-Está {en una situación muy difícil}. | en un callejón sin salida, en un brete, entre la espada y la pared | en un bretón = No tiene sentido. | en un pedestal = Estar en un pedestal es ser admirado.
-Lo tienen {muy idealizado}. | en un pedestal, en un altar, mitificado | en un brete = En un brete es en apuros. | en un pedal = No tiene sentido.
+Está {en una situación muy difícil}. | en un callejón sin salida, en un brete, entre la espada y la pared | en un bretel = Bretel es un tirante de una prenda. | en un pedestal = Estar en un pedestal es ser admirado.
+Lo tienen {muy idealizado}. | en un pedestal, en un altar, mitificado | en un brete = En un brete es en apuros. | en un pedestre = Pedestre es vulgar o que va a pie.
 Estás {equivocado por completo}. | en un error, muy errado, completamente desencaminado | en un aprieto = En un aprieto es en apuros. | en lo cierto = En lo cierto es lo contrario.
 Tienes {toda la razón}. | toda la razón del mundo, más razón que un santo, razón de sobra | toda la ración = Ración es una porción de comida. | todo el razonamiento = Razonamiento es un argumento.
 El proyecto quedó {sin terminar}. | inconcluso, a medias, en el aire | inconcuso = Inconcuso es firme y sin duda. | inconexo = Inconexo es sin relación.
