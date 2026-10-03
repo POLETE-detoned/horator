@@ -54,7 +54,7 @@ Hay que {reducir} el consumo. | mermar, menguar, aminorar | minar = Minar es pon
 Los rumores {debilitaron} su autoridad. | minaron, socavaron, erosionaron | mimaron = Mimar es dar cariño. | sacaron = Sacar es extraer.
 La empresa {ganó} un gran prestigio. | se granjeó, adquirió, se labró | granizó = Granizar es caer granizo. | grajeó = No es una palabra válida.
 El artista {consiguió} el favor del público. | se granjeó, se ganó, conquistó | se graduó = Graduarse es obtener un título. | se grapó = Grapar es unir con grapas.
-Debemos {atender a} las normas. | acatar, observar, cumplir | acotar = Acotar es delimitar o hacer una anotación. | acatar a = Le sobra la preposición.
+Debemos {atender a} las normas. | acatar, observar, cumplir | acotar = Acotar es delimitar o hacer una anotación. | atender = Sin la preposición cambia el sentido: atender es prestar atención o servir.
 Hay que {limitar} el terreno. | acotar, delimitar, cercar | acatar = Acatar es obedecer. | acortar = Acortar es reducir la longitud.
 El escritor {añadió} notas al pie. | apostilló, anotó, glosó | apostató = Apostatar es renegar de una fe. | apuntaló = Apuntalar es sostener con puntales.
 La comisión {examinó} el caso a fondo. | estudió, analizó, escrutó | eximió = Eximir es librar de una obligación. | exhumó = Exhumar es desenterrar.

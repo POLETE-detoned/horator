@@ -41,7 +41,7 @@ Los ladrones {entraron} en la casa. | irrumpieron, accedieron, se colaron | ingr
 El precio {subió} mucho. | se disparó, aumentó, se encareció | ascendió = Ascender se dice de cargos o de montañas. | escaló = Escalar es subir una montaña o un puesto.
 El alpinista {subió} la montaña. | escaló, coronó, ascendió | aumentó = Aumentar es hacer mayor. | encareció = Encarecer es subir el precio.
 La empleada {subió} de puesto. | ascendió, mejoró | escaló = Suena a esfuerzo físico o a medrar. | trepó = Trepar tiene matiz negativo: medrar sin escrúpulos.
-La temperatura {bajó} de golpe. | descendió, cayó, se desplomó | descendió del tren = Se dice de personas que bajan de un vehículo. | rebajó = Rebajar es reducir un precio.
+La temperatura {bajó} de golpe. | descendió, cayó, se desplomó | desfalleció = Desfallecer es perder las fuerzas. | rebajó = Rebajar es reducir un precio.
 El avión {bajó} en Madrid. | aterrizó, tomó tierra, descendió | se desplomó = Desplomarse es caer de golpe: implica accidente. | rebajó = Rebajar es reducir un precio.
 Hay que {bajar} el precio. | rebajar, reducir, abaratar | descender = Descender se usa para posiciones o niveles, no para precios que se ajustan a propósito. | aterrizar = Aterrizar es tomar tierra.
 Tras las lluvias, el río {lleva} mucho barro. | arrastra, transporta, trae | porta = Portar es llevar consigo algo. | conduce = Conducir es dirigir un vehículo.
