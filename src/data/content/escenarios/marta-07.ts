@@ -1,7 +1,7 @@
 export default `
 # Marta · Medio — liderazgo y gestión de equipos
 Su estilo de liderazgo | Describa su estilo de liderazgo con un ejemplo concreto. Nada de teorías. | Describe tu liderazgo con hechos | ejemplo, confianza, delegar, resultados
-Delegar | ¿Qué tarea nunca delegaría y por qué? | Muestra criterio al delegar | responsabilidad, confianza, criterio, prioridades
+Delegar | Todos dicen que saben delegar. ¿Qué tarea no delegaría nunca y por qué? | Muestra criterio al delegar | responsabilidad, confianza, criterio, prioridades
 El empleado estrella | Su mejor empleado empieza a rendir menos. ¿Qué hace? | Explica cómo lo abordarías | conversación, causas, apoyo, seguimiento
 Despedir a alguien | ¿Ha tenido que despedir a alguien? ¿Cómo lo hizo? | Muestra humanidad y firmeza | respeto, claridad, preparación, dignidad
 Contratar | ¿Qué es lo primero que busca en un candidato para su equipo? | Explica tus criterios de selección | actitud, valores, encaje, potencial
@@ -9,7 +9,7 @@ Equipo remoto | ¿Cómo mantendría unido a un equipo que trabaja en remoto desd
 Reconocer el trabajo | ¿Cómo reconoce el buen trabajo de su equipo? | Explica tu forma de reconocer | reconocimiento, público, concreto, sincero
 El conflicto entre dos personas | Dos personas de su equipo no se soportan. ¿Qué hace? | Explica cómo mediarías | mediación, normas, objetivos, respeto
 El feedback difícil | ¿Cómo le dice a alguien que su trabajo no está a la altura? | Explica cómo das feedback difícil | hechos, respeto, expectativas, plan
-Los objetivos del equipo | ¿Cómo fija los objetivos de su equipo? | Explica tu método | participación, medibles, realistas, seguimiento
+Los objetivos del equipo | Cuénteme cómo fija los objetivos de su equipo. ¿Los decide usted o los decide el equipo? | Explica tu método | participación, medibles, realistas, seguimiento
 Un equipo que fracasa | Su equipo no ha cumplido los objetivos del trimestre. ¿Qué dice a la dirección? | Muestra responsabilidad como líder | responsabilidad, análisis, plan, transparencia
 El jefe que no escucha | Usted es mando intermedio y su jefe no escucha las propuestas del equipo. ¿Qué hace? | Muestra cómo harías de puente | argumentos, datos, oportunidad, lealtad
 El liderazgo en crisis | Hay una crisis grave y su equipo está asustado. ¿Qué les dice? | Prepara un mensaje de liderazgo | calma, claridad, plan, confianza

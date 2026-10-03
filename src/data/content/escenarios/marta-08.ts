@@ -19,9 +19,9 @@ La crítica pública | ¿Es aceptable criticar a su empresa en redes sociales? |
 Las normas absurdas | Hay una norma interna que usted considera absurda. ¿La cumple? | Muestra criterio y respeto | cumplir, cuestionar, canales, propuesta
 La competencia desleal | Descubre que la competencia ha copiado un diseño nuestro. ¿Qué propone? | Propón una respuesta profesional | legal, diferenciación, innovación, calma
 El éxito sin escrúpulos | ¿Admira a los empresarios que triunfan sin importarles los demás? | Da una opinión con valores | ética, éxito sostenible, valores, reputación
-La empresa ideal | ¿Cómo debería ser la cultura de una empresa en la que todos quieran trabajar? | Describe una cultura sana | confianza, propósito, respeto, crecimiento
+Una cultura sana | ¿Cómo debería ser la cultura de una empresa en la que todos quieran trabajar? | Describe una cultura sana | confianza, propósito, respeto, crecimiento
 La diversidad generacional | Trabajan juntas cuatro generaciones. ¿Cómo se aprovecha eso? | Propón cómo aprovechar la diversidad | experiencia, frescura, mentoría, respeto
-El trato al becario | ¿Cómo debe tratarse a un becario? | Da una opinión con valores | aprendizaje, respeto, tareas útiles, acompañamiento
+El trato al becario | Aquí recibimos muchos becarios. En su opinión, ¿cómo debe tratarse a un becario? | Da una opinión con valores | aprendizaje, respeto, tareas útiles, acompañamiento
 La honestidad con el jefe | ¿Le diría a su jefe que se equivoca delante de todos? | Muestra cómo discreparías con respeto | privado, argumentos, respeto, oportunidad
 La inteligencia artificial y la ética | ¿Qué límites éticos pondría al uso de la inteligencia artificial en la empresa? | Argumenta con criterio | transparencia, privacidad, supervisión humana, responsabilidad
 La privacidad del cliente | Un compañero comenta datos personales de clientes en la cafetería. ¿Qué hace? | Muestra responsabilidad | privacidad, protocolo, conversación, ley

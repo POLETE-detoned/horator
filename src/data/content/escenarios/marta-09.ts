@@ -3,7 +3,7 @@ export default `
 Su carrera en tres etapas | Resuma su carrera en tres etapas y dígame qué aprendió en cada una. | Resume tu carrera con sentido | etapas, aprendizaje, evolución, coherencia
 El cambio de rumbo | Veo que ha cambiado mucho de sector. ¿Hay un hilo conductor o va probando? | Encuentra el hilo de tu trayectoria | coherencia, habilidades, búsqueda, propósito
 Su mentor | ¿Ha tenido algún mentor? ¿Qué le enseñó? | Habla de tu mentor con gratitud | aprendizaje, ejemplo, consejo, aplicación
-Lo que quiere aprender | ¿Qué espera aprender en este puesto? | Muestra ambición de crecimiento | aprendizaje, retos, habilidades, desarrollo
+Lo que quiere aprender | Dejemos el sueldo a un lado. ¿Qué espera aprender en este puesto? | Muestra ambición de crecimiento | aprendizaje, retos, habilidades, desarrollo
 El éxito para usted | ¿Qué significa para usted tener éxito profesional? | Define tu idea de éxito | logros, propósito, equilibrio, impacto
 La ambición | ¿Es usted una persona ambiciosa? Demuéstremelo. | Muestra ambición con ejemplos | metas, esfuerzo, logros, crecimiento
 El estancamiento | Lleva cinco años en el mismo puesto. ¿Por qué no ha ascendido? | Responde sin ponerte a la defensiva | contexto, aprendizaje, decisión, crecimiento
@@ -14,7 +14,7 @@ La motivación diaria | ¿Qué hace cuando no tiene ganas de trabajar? | Respond
 El reconocimiento | ¿Qué tipo de reconocimiento le motiva más? | Explica qué te motiva | reconocimiento, crecimiento, autonomía, sinceridad
 Cambiar de profesión | ¿Se ha planteado alguna vez cambiar de profesión? | Responde con sinceridad | vocación, reflexión, compromiso, crecimiento
 El sueldo o el aprendizaje | ¿Qué prefiere: un sueldo alto o un puesto donde aprenda mucho? | Defiende tu prioridad | aprendizaje, futuro, equilibrio, coherencia
-La estabilidad | ¿Busca un trabajo para toda la vida? | Responde con matices | compromiso, crecimiento, estabilidad, futuro
+La estabilidad | Hoy la gente cambia mucho de empresa. ¿Usted busca un trabajo para toda la vida? | Responde con matices | compromiso, crecimiento, estabilidad, futuro
 Emprender | ¿Le gustaría montar su propia empresa algún día? | Responde con honestidad y tacto | ambición, compromiso, aprendizaje, sinceridad
 La pasión | ¿Qué le apasiona fuera del trabajo y cómo influye en su forma de trabajar? | Conecta tu afición con el trabajo | pasión, habilidades, equilibrio, energía
 El voluntariado | Veo que ha hecho voluntariado. ¿Qué le aportó profesionalmente? | Muestra lo que aprendiste | empatía, organización, trabajo en equipo, valores
@@ -23,7 +23,7 @@ El idioma | ¿Qué idioma le gustaría aprender y por qué? | Responde mostrando
 El libro profesional | ¿Qué libro recomendaría a alguien que empieza en su profesión? | Recomienda con criterio | aprendizaje, aplicación, experiencia, criterio
 La crítica constructiva | ¿Cuál es la crítica que más le ha ayudado a mejorar? | Muestra apertura al feedback | feedback, cambio, humildad, mejora
 La vocación | ¿Cuándo supo que quería dedicarse a esto? | Cuenta tu vocación con autenticidad | momento, inspiración, vocación, compromiso
-El reto pendiente | ¿Qué reto profesional tiene pendiente? | Muestra ambición concreta | meta, plan, motivación, crecimiento
+El reto pendiente | Todos tenemos una espinita clavada. ¿Qué reto profesional tiene pendiente? | Muestra ambición concreta | meta, plan, motivación, crecimiento
 La jubilación | ¿Cómo le gustaría que le recordaran cuando se jubile? | Responde con visión | legado, valores, impacto, personas
 El talento oculto | ¿Tiene algún talento que no aparezca en su currículum? | Sorprende con algo relevante | habilidad, ejemplo, aplicación, originalidad
 El síndrome del impostor | ¿Ha sentido alguna vez que no estaba a la altura? ¿Qué hizo? | Muestra vulnerabilidad y crecimiento | honestidad, superación, aprendizaje, confianza
