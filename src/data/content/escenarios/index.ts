@@ -49,7 +49,13 @@ import ramiro_09 from './ramiro-09';
 import ramiro_10 from './ramiro-10';
 import ramiro_11 from './ramiro-11';
 import ramiro_12 from './ramiro-12';
+import ramiro_13 from './ramiro-13';
+import ramiro_14 from './ramiro-14';
+import ramiro_15 from './ramiro-15';
+import ramiro_16 from './ramiro-16';
+import ramiro_17 from './ramiro-17';
+import ramiro_18 from './ramiro-18';
 
 export const LUCIA = parseScenarios('lucia', [lucia_00, lucia_01, lucia_02, lucia_03, lucia_04, lucia_05, lucia_06, lucia_07, lucia_08, lucia_09, lucia_10, lucia_11, lucia_12, lucia_13, lucia_14, lucia_15, lucia_16].join('\n'));
 export const MARTA = parseScenarios('marta', [marta_00, marta_01, marta_02, marta_03, marta_04, marta_05, marta_06, marta_07, marta_08, marta_09, marta_10, marta_11, marta_12, marta_13, marta_14, marta_15, marta_16].join('\n'));
-export const RAMIRO = parseScenarios('ramiro', [ramiro_00, ramiro_01, ramiro_02, ramiro_03, ramiro_04, ramiro_05, ramiro_06, ramiro_07, ramiro_08, ramiro_09, ramiro_10, ramiro_11, ramiro_12].join('\n'));
+export const RAMIRO = parseScenarios('ramiro', [ramiro_00, ramiro_01, ramiro_02, ramiro_03, ramiro_04, ramiro_05, ramiro_06, ramiro_07, ramiro_08, ramiro_09, ramiro_10, ramiro_11, ramiro_12, ramiro_13, ramiro_14, ramiro_15, ramiro_16, ramiro_17, ramiro_18].join('\n'));
