@@ -13,7 +13,7 @@ El río es {muy ancho}. | caudaloso, amplio, extenso | anchoa = Anchoa es un pes
 El camino es {muy estrecho}. | angosto, ceñido, apretado | estrechado = Estrechado es lo que se ha hecho más estrecho. | estricto = Estricto es severo.
 La ciudad es {muy ruidosa}. | bulliciosa, escandalosa, estruendosa | rumorosa = Rumoroso es un murmullo suave. | ruinosa = Ruinoso es que está en ruinas o que arruina.
 El pueblo es {muy tranquilo}. | apacible, sosegado, sereno | tranquilizante = Tranquilizante es un medicamento. | tranquilizador = Tranquilizador es lo que calma a alguien.
-El tren va {muy rápido}. | rapidísimo, a toda velocidad, como un rayo | rápidamente = Es correcto pero repite la palabra sin aportar vocabulario. | raudal = Raudal es una gran cantidad de agua.
+El tren va {muy rápido}. | rapidísimo, a toda velocidad, como un rayo | rapiña = Rapiña es robo con violencia. | raudal = Raudal es una gran cantidad de agua.
 El autobús va {muy lento}. | despacísimo, a paso de tortuga, lentísimo | lentejas = Las lentejas son una legumbre. | lentes = Lentes son gafas.
 El paisaje es {muy bonito}. | precioso, impresionante, espectacular | paisajista = Paisajista es quien diseña jardines o pinta paisajes. | bonificado = Bonificado es con descuento.
 El mar está {muy movido}. | revuelto, agitado, picado | movedizo = Movedizo es inestable, como las arenas movedizas. | móvil = Móvil es lo que se puede mover o un teléfono.
@@ -21,7 +21,7 @@ El agua del lago está {muy clara}. | cristalina, transparente, limpia | clarifi
 El bosque es {muy oscuro}. | sombrío, tenebroso, lóbrego | oscuridad = Es un sustantivo. | obstruido = Obstruido es bloqueado.
 La calle está {muy sucia}. | mugrienta, llena de basura, asquerosa | sucesiva = Sucesivo es lo que va detrás. | suculenta = Suculento es sabroso.
 El parque es {muy grande}. | inmenso, extenso, enorme | grandote = Es coloquial y suele decirse de personas. | gran = Gran solo va delante del nombre.
-El aeropuerto está {muy lejos}. | lejísimos, a desmano, en el quinto pino | lejano = Es adjetivo y no encaja tras "está". | alejado = Alejado es correcto pero no intensifica: falta el "muy".
+El aeropuerto está {muy lejos}. | lejísimos, a desmano, en el quinto pino | lejano = Es adjetivo y no encaja tras "está". | lejanía = Es un sustantivo.
 Llegamos {muy tarde} a la estación. | tardísimo, con mucho retraso, a deshora | tarde noche = No es la expresión adecuada. | tardío = Tardío es adjetivo: no encaja aquí.
 Salimos {muy temprano}. | tempranísimo, de madrugada, al alba | temporal = Temporal es pasajero o una tormenta. | templado = Templado habla de temperatura.
 El museo es {muy interesante}. | fascinante, apasionante, cautivador | interesado = Interesado es quien tiene interés o busca su beneficio. | interior = Interior es lo de dentro.
