@@ -35,7 +35,7 @@ Me {encanta} esta canción. | chifla, apasiona, flipa | encasilla = Encasillar e
 {Odio} madrugar. | detesto, aborrezco, no soporto | adoro = Es lo contrario. | olvido = Olvidar es no recordar.
 No {puedo} más. | aguanto, soporto, resisto | podo = Podar es cortar ramas. | pudo = Cambia la persona y el tiempo.
 {Empieza} la película. | comienza, arranca, se inicia | empata = Empatar es igualar. | empeora = Empeorar es ir a peor.
-La película {acabó} muy tarde. | terminó, finalizó, concluyó | acató = Acatar es obedecer. | acabó con todos = Cambia el sentido.
+La película {acabó} muy tarde. | terminó, finalizó, concluyó | acató = Acatar es obedecer. | acabó con todos = Acabar con algo es destruirlo.
 {Corre} que perdemos el tren. | date prisa, apúrate, vuela | cose = Coser es unir tela con hilo. | corta = Cortar es dividir.
 {Sal} de la cama ya. | levántate, despégate | sal de mesa = Es el condimento, no el verbo. | salta = Saltar es dar un salto.
 {Duerme} un rato. | descansa, échate una siesta, reposa | duele = Doler es causar dolor. | dura = Durar es mantenerse en el tiempo.
@@ -76,11 +76,11 @@ Me {preocupa} el examen. | inquieta, agobia, quita el sueño | ocupa = Ocupar es
 {Sube} el volumen. | aumenta, pon más alto, alza | suda = Sudar es transpirar. | sueña = Soñar es tener sueños.
 {Baja la voz}, por favor. | Habla más bajo, Susurra, Modera el tono | Baja la guardia = Es dejar de estar alerta. | Baña la voz = No tiene sentido: bañar es lavar con agua.
 {Para} el coche aquí. | detén, aparca, frena | paro = Cambia la persona. | pares = Par es igual o un conjunto de dos.
-{Sigue} recto. | continúa, tira, ve | siega = Segar es cortar la hierba. | sigue a ese coche = Cambia el sentido.
+{Sigue} recto. | continúa, tira, ve | siega = Segar es cortar la hierba. | persigue = Perseguir es ir detrás de alguien para alcanzarlo.
 {Gira} a la derecha. | tuerce, dobla, coge | grita = Gritar es chillar. | gime = Gemir es quejarse con sonidos.
 {Trae} pan, por favor. | compra, pilla, lleva a casa | traga = Tragar es engullir. | trama = Tramar es planear algo a escondidas.
-{Lleva} el paraguas. | coge, llévate, ten a mano | llena = Llenar es ocupar. | lleva tiempo = Cambia el sentido.
-{Deja} el móvil un rato. | suelta, aparta, olvídate de | deja de = Necesita otro verbo detrás. | deja caer = Cambia el sentido.
+{Lleva} el paraguas. | coge, llévate, ten a mano | llena = Llenar es ocupar. | lleva tiempo = Llevar tiempo es tardar, no transportar.
+{Deja} el móvil un rato. | suelta, aparta, olvídate de | deja de = Necesita otro verbo detrás. | deja caer = Dejar caer es soltar o insinuar algo.
 {Ve} a la tienda. | acércate, baja, corre | ven = Ven es acercarse a donde está quien habla. | ves = Ves es del verbo ver.
 {Ven} aquí. | acércate, arrímate | ve = Ve es ir a otro sitio. | vende = Vender es dar algo por dinero.
 {Siéntate} en el sofá. | acomódate, ponte cómodo, apoltrónate | siente = Sentir es percibir una emoción. | sitúa = Situar es colocar.

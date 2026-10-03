@@ -44,7 +44,7 @@ La isla es {muy pequeña}. | diminuta, minúscula, chiquitita | pequeñez = Es u
 Estas vacaciones han sido {muy cortas}. | brevísimas, escasas, un suspiro | cortadas = Cortado es lo que se ha partido. | cortantes = Cortante es lo que corta.
 Nos {perdimos} en la ciudad. | desorientamos, extraviamos, liamos | perdonamos = Perdonar es disculpar. | pedimos = Pedir es solicitar.
 {Vimos} un paisaje precioso. | contemplamos, divisamos, admiramos | vestimos = Vestir es ponerse ropa. | ojeamos = Ojear es mirar por encima un texto.
-Vamos a {ver} el museo. | visitar, recorrer, conocer | mirar fijamente = Cambia el sentido. | vigilar = Vigilar es controlar o proteger.
+Vamos a {ver} el museo. | visitar, recorrer, conocer | mirar fijamente = Mirar fijamente es clavar la vista, no visitar. | vigilar = Vigilar es controlar o proteger.
 Quiero {ir} a la playa. | acercarme, bajar, escaparme | venir = Venir es acercarse al lugar donde está quien habla. | huir = Huir es escapar de un peligro.
 {Llegamos} al pueblo de noche. | arribamos, alcanzamos, entramos en | llevamos = Llevar es transportar. | llenamos = Llenar es ocupar un espacio.
 El taxi {tardó mucho}. | se retrasó, se demoró, se hizo esperar | tardó poco = Es lo contrario. | tardeó = Tardear es pasar la tarde.
